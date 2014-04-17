@@ -4,29 +4,49 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 //Global variables.
 int nCase = 0;
 int nNumberOfLines = 0;
-bool bIsNameIn = false;
-string sNames[100];
+int nPos = 0;
+vector<string> vNames;
+string sNames [100];
 string sNameIn = "";
 
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	cin >> nCase;
-	cin >> nNumberOfLines;
 	
-	for (int j = 0; j < nNumberOfLines; j++)
-	{
-		cin >> sNames[j];
-	}
 	for (int i = 0; i < nCase; i++)
 	{
-		cout << "Case#" << i + 1 << ":" << sNames[i] << endl;//sNameIn << endl;
+		vNames.clear();
+		sNames->clear();
+
+		cin >> nNumberOfLines;
+		for (int j = 0; j <= nNumberOfLines; j++)
+		{
+			cin >> sNames[j];
+			vNames.push_back(sNames[j]);
+		}
+
+		if ((vNames.size() % 2) == 0)
+		{
+			cout << "size (Yes): " << vNames.size() << endl;
+			sNameIn = "Yes";
+		}
+		else
+		{
+			cout << "size (No): " << vNames.size() << endl;
+			sNameIn = "No";
+		}
+		cout << "Case#" << i + 1 << ":" << sNameIn << endl;//sNameIn << endl;
 	}
+	
+	
+	
 
 	return 0;
 }
