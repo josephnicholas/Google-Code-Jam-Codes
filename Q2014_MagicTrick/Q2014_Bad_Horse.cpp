@@ -49,7 +49,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		cout << "Case#" << i + 1 << ":" << sNameIn << endl;//sNameIn << endl;
 	}
-	
 	return 0;
 }
 
