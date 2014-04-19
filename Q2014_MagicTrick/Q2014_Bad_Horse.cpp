@@ -19,6 +19,7 @@ string sNameIn = "";
 int _tmain(int argc, _TCHAR* argv[])
 {
 	cin >> nCase;
+	//getline(cin, sNameIn);
 	
 	for (int i = 0; i < nCase; i++)
 	{
@@ -28,9 +29,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		cin >> nNumberOfLines;
 		for (int j = 0; j <= nNumberOfLines; j++)
 		{
-			cin >> sNames[j];
+			//cin >> sNames[j];
+			getline(cin, sNames[j]);
+			
 			vNames.push_back(sNames[j]);
 		}
+		nPos = sNames[0].find(" ");
+		cout << "nPos=" << nPos <<endl;
 
 		if ((vNames.size() % 2) == 0)
 		{
