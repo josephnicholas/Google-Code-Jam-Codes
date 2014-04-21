@@ -7,6 +7,9 @@
 #include <vector>
 using namespace std;
 
+//Member function prototype.
+string sNameSeparator(string sName1, string sName2);
+
 //Global variables.
 int nCase = 0;
 int nNumberOfLines = 0;
@@ -31,7 +34,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			//cin >> sNames[j];
 			getline(cin, sNames[j]);
-			
 			vNames.push_back(sNames[j]);
 		}
 		nPos = sNames[0].find(" ");
@@ -52,3 +54,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
+string sNameSeparator(string sName1, string sName2)
+{
+
+
+	return;
+}
