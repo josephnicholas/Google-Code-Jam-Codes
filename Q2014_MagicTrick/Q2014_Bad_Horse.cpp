@@ -8,36 +8,51 @@
 using namespace std;
 
 //Member function prototype.
-string sNameSeparator(string sName1, string sName2);
+void sNameSeparator(string sName, vector<string> &);
 
 //Global variables.
 int nCase = 0;
 int nNumberOfLines = 0;
 int nPos = 0;
 vector<string> vNames;
-string sNames [100];
+string sNames;// [100];
 string sNameIn = "";
 
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	cin >> nCase;
-	//getline(cin, sNameIn);
 	
 	for (int i = 0; i < nCase; i++)
 	{
 		vNames.clear();
-		sNames->clear();
+		sNames.clear();
 
 		cin >> nNumberOfLines;
-		for (int j = 0; j <= nNumberOfLines; j++)
+
+		/***************************************************************
+
+		Stack overflow:
+		You have a different problem than the one described in the faq. 
+		You are mixing formatted and unformatted input. formatted input 
+		leaves trailing newlines in the stream. Your unformatted input, 
+		getline, stops when it encounters a newline.
+
+		***************************************************************/
+
+		if (cin.peek() == '\n')
+			cin.ignore();
+
+		/***
+		-end-
+		***/
+
+		for (int j = 0; j < nNumberOfLines; j++)
 		{
-			//cin >> sNames[j];
-			getline(cin, sNames[j]);
-			vNames.push_back(sNames[j]);
+			getline(cin, sNames);
+			sNameSeparator(sNames, vNames);
+			//vNames.push_back(sNames);
 		}
-		nPos = sNames[0].find(" ");
-		cout << "nPos=" << nPos <<endl;
 
 		if ((vNames.size() % 2) == 0)
 		{
@@ -54,9 +69,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
-string sNameSeparator(string sName1, string sName2)
+void sNameSeparator(string sName, vector<string> &vNameContainer)
 {
+	int found = sName.find(" ");
+	int rFound = sName.rfind(" ");
+	sName = sName.substr(found);
 
+	//First find.
+	cout << "first:" << sName << endl;
+	vNameContainer.push_back(sName);
 
-	return;
+	sName = sName.substr(rFound);
+	//Second find.
+	cout << "second:" << sName << endl;
+	vNameContainer.push_back(sName);
+
+	cout << "vector size:" << vNameContainer.size() << endl;
+
 }
