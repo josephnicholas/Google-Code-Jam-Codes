@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iterator>
+#include <algorithm>
 using namespace std;
 
 //Member function prototype.
@@ -14,10 +16,12 @@ void sNameSeparator(string sName, vector<string> &);
 int nCase = 0;
 int nNumberOfLines = 0;
 int nPos = 0;
+
 vector<string> vNames;
+string::iterator iterFoundName;
+
 string sNames;// [100];
 string sNameIn = "";
-
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -71,19 +75,32 @@ int _tmain(int argc, _TCHAR* argv[])
 
 void sNameSeparator(string sName, vector<string> &vNameContainer)
 {
-	int found = sName.find(" ");
-	int rFound = sName.rfind(" ");
-	sName = sName.substr(found);
+	iterFoundName = find(sName.begin(), sName.end(), ' ');
+	string sNameCopy = sName;
 
-	//First find.
-	cout << "first:" << sName << endl;
-	vNameContainer.push_back(sName);
+	for (string::iterator it = sNameCopy.begin(); it != sNameCopy.end(); ++it)
+	{
+		//First find.
+		if (*it == ' ')
+		{
+			break;
+		}
+		cout << *it;
+		//vNameContainer.push_back();
+	}
 
-	sName = sName.substr(rFound);
-	//Second find.
-	cout << "second:" << sName << endl;
-	vNameContainer.push_back(sName);
+	for (string::iterator it = iterFoundName; it != sName.end(); ++it)
+	{
+		//First find.
+		if (*it == ' ')
+		{
+			sName.erase(it);
+		}
+		cout << *it;
+		//vNameContainer.push_back();
+	}
 
-	cout << "vector size:" << vNameContainer.size() << endl;
-
+	
+	
+	cout << endl;
 }
