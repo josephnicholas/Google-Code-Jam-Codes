@@ -16,6 +16,9 @@ int nNumberOfCases{ 0 };
 int nRowNumber{ 0 };
 string sCardNumbers;
 
+//function prototype.
+string sFoundInRow(vector<string>, int);
+
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -43,8 +46,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			getline(cin, sCardNumbers);
 			vCardArrangement.push_back(sCardNumbers);
-
-			
 		}
 		//Find specific card number by inputted row position.
 		for (int k = 0; k < vCardArrangement.size(); k++)
@@ -56,10 +57,18 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 			cout << vCardArrangement[k] << " ";
 		}
+		
 
-		cout << "Case #"<<i + 1<<":"<< endl;
+		cout << "Case #"<<i + 1<<":"<<vCardArrangement.size() << endl;
 	}
 
 	return 0;
 }
 
+//Implementation.
+string sFoundInRow(vector<string> vNumberContainer, int nRow)
+{
+	string sFoundNumber;
+
+	return sFoundNumber;
+}
