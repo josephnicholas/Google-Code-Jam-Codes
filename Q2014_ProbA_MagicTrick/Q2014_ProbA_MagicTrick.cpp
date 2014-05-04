@@ -44,11 +44,17 @@ int _tmain(int argc, _TCHAR* argv[])
 			getline(cin, sCardNumbers);
 			vCardArrangement.push_back(sCardNumbers);
 
-			//Find specific card number by inputted row position.
-			for (int k = 0; k < length; k++)
+			
+		}
+		//Find specific card number by inputted row position.
+		for (int k = 0; k < vCardArrangement.size(); k++)
+		{
+			if ((vCardArrangement.size() % 4) == 0)
 			{
+				cout << "\n";
 
 			}
+			cout << vCardArrangement[k] << " ";
 		}
 
 		cout << "Case #"<<i + 1<<":"<< endl;
