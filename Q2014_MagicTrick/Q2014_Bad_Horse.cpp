@@ -29,8 +29,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	
 	for (int i = 0; i < nCase; i++)
 	{
-		vNames.clear();
-		sNames.clear();
+		vNames.empty();
+		sNames.empty();
 
 		cin >> nNumberOfLines;
 
@@ -55,17 +55,14 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			getline(cin, sNames);
 			sNameSeparator(sNames, vNames);
-			//vNames.push_back(sNames);
 		}
 
 		if ((vNames.size() % 2) == 0)
 		{
-			cout << "size (Yes): " << vNames.size() << endl;
 			sNameIn = "Yes";
 		}
 		else
 		{
-			cout << "size (No): " << vNames.size() << endl;
 			sNameIn = "No";
 		}
 		cout << "Case#" << i + 1 << ":" << sNameIn << endl;//sNameIn << endl;
@@ -77,6 +74,11 @@ void sNameSeparator(string sName, vector<string> &vNameContainer)
 {
 	iterFoundName = find(sName.begin(), sName.end(), ' ');
 	string sNameCopy = sName;
+	string temp;
+	
+	temp.empty();
+	vNameContainer.empty();
+	vNameContainer.clear();
 
 	for (string::iterator it = sNameCopy.begin(); it != sNameCopy.end(); ++it)
 	{
@@ -85,10 +87,13 @@ void sNameSeparator(string sName, vector<string> &vNameContainer)
 		{
 			break;
 		}
-		cout << *it;
-		//vNameContainer.push_back();
+		//cout << *it;
+		temp += *it;
 	}
-
+	vNameContainer.push_back(temp);
+		
+	//cout << " ";
+	temp.empty();
 	for (string::iterator it = iterFoundName; it != sName.end(); ++it)
 	{
 		//First find.
@@ -96,11 +101,8 @@ void sNameSeparator(string sName, vector<string> &vNameContainer)
 		{
 			sName.erase(it);
 		}
-		cout << *it;
-		//vNameContainer.push_back();
+		//cout << *it;
+		temp += *it;
 	}
-
-	
-	
-	cout << endl;
+	vNameContainer.push_back(temp);
 }
