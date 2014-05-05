@@ -14,6 +14,7 @@
     <ProjectGuid>{9B3B976F-1000-4933-80F8-D86A4A89EE81}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Q2014_MagicTrick</RootNamespace>
+    <ProjectName>Q2014_BadHorse</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
