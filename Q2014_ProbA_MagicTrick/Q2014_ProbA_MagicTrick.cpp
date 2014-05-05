@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <sstream>
 
 using namespace std;
 
@@ -34,12 +35,12 @@ int _tmain(int argc, _TCHAR* argv[])
 		{
 			if (!isFinshedArr1)
 			{
-				cout << "nRowNumber1:";
+				//cout << "nRowNumber1:";
 				cin >> nRowNumber1;
 			}
 			else
 			{
-				cout << "nRowNumber2:";
+				//cout << "nRowNumber2:";
 				cin >> nRowNumber2;
 			}
 
@@ -49,7 +50,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 			if (isFinshedArr1)
 			{
-				cout << "Set2:\n";
+				//cout << "Set2:\n";
 				sCardNumbers.clear();
 				for (int k = 0; k < 4; k++)
 				{
@@ -60,7 +61,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 			if (!isFinshedArr1)
 			{
-				cout << "Set1:\n";
+				//cout << "Set1:\n";
 				for (int j = 0; j < 4; j++)
 				{
 					if (j == 3) //4th cycle.
@@ -87,33 +88,73 @@ int _tmain(int argc, _TCHAR* argv[])
 //Implementation.
 string sFoundInRow(vector<string> vNumberContainer1, vector<string> vNumberContainer2, int nRowArr1, int nRowArr2)
 {
-	string sFoundNumber, sTemp1, sTemp2;
-	
+	string sFoundItems, sTemp1, sTemp2, sTemp;
+	string sDelimeter = ",";
+	int nFoundItems = 0;
+
+	int current;
+	int next = -1;
+
 	sTemp1 = vNumberContainer1[nRowArr1 - 1];
 	sTemp2 = vNumberContainer2[nRowArr2 - 1];
 
-	sTemp1.erase(remove_if(sTemp1.begin(), sTemp1.end(), isspace), sTemp1.end());
-	sTemp2.erase(remove_if(sTemp2.begin(), sTemp2.end(), isspace), sTemp2.end());
+	/*sTemp1.erase(replace_if(sTemp1.begin(), sTemp1.end(), isspace, ','), sTemp1.end());
+	sTemp2.erase(replace_if(sTemp2.begin(), sTemp2.end(), isspace, ','), sTemp2.end());*/
+
+	replace_if(sTemp1.begin(), sTemp1.end(), isspace, ',');
+	replace_if(sTemp2.begin(), sTemp2.end(), isspace, ',');
 
 	cout << "\n";
+	
+	vNumberContainer1.clear();
+	vNumberContainer2.clear();
+	
+	do
+	{
+		current = next + 1;
+		next = sTemp1.find_first_of(sDelimeter, current);
+		sTemp = sTemp1.substr(current, next - current);
+		vNumberContainer1.push_back(sTemp);
+		//cout << "sTemp: " << sTemp << endl;
 
-	cout << sTemp1 << endl;
-	cout << sTemp2 << endl;
+	} while (next != string::npos);
+	
+	//reinitialize
+	current = 0;
+	next = -1;
+	sTemp.clear();
 
-	sFoundNumber = sTemp1.compare(sTemp2);
-	sTemp1.
+	do
+	{
+		current = next + 1;
+		next = sTemp2.find_first_of(sDelimeter, current);
+		sTemp = sTemp2.substr(current, next - current);
+		vNumberContainer2.push_back(sTemp);
+		//cout << "sTemp: " << sTemp << endl;
 
-	return sFoundNumber;
+	} while (next != string::npos);
+
+	for (unsigned int i = 0; i < vNumberContainer1.size(); i++)
+	{
+		if (vNumberContainer1[i] == vNumberContainer2[i])
+		{
+			nFoundItems++;
+			sFoundItems = vNumberContainer1[i];
+		}
+		
+	}
+
+	if (nFoundItems > 1)
+	{
+		sFoundItems = "Bad magician!";
+	}
+	else if (nFoundItems == 0)
+	{
+		sFoundItems = "Volunteer cheated!";
+	}
+
+
+	return sFoundItems;
 }
 
-//Find specific card number by inputted row position.
-//for (int k = 0; k < vCardArrangement1.size(); k++)
-//{
-//	if ((vCardArrangement1.size() % 4) == 0)
-//	{
-//		cout << "\n";
-//
-//	}
-//	cout << vCardArrangement1[k] << " ";
-//}
 
