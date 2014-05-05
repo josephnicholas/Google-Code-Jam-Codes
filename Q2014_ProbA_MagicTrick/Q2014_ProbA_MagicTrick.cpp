@@ -31,6 +31,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	cin >> nNumberOfCases;
 	for (int i = 0; i < nNumberOfCases; i++)
 	{
+		vCardArrangement1.clear();
+		vCardArrangement2.clear();
 		for (int l = 0; l < 2; l++)
 		{
 			if (!isFinshedArr1)
@@ -78,8 +80,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		}
 				
-		cout << "Output:" << sFoundInRow(vCardArrangement1, vCardArrangement2, nRowNumber1, nRowNumber2) << endl;
-		//cout << "Case #"<<i + 1<<":"<<vCardArrangement1.size() << endl;
+		//cout << "Output:" <<  << endl;
+		cout << "Case #" << i + 1 << ":" << sFoundInRow(vCardArrangement1, vCardArrangement2, nRowNumber1, nRowNumber2) << endl;
 	}
 
 	return 0;
@@ -98,9 +100,6 @@ string sFoundInRow(vector<string> vNumberContainer1, vector<string> vNumberConta
 	sTemp1 = vNumberContainer1[nRowArr1 - 1];
 	sTemp2 = vNumberContainer2[nRowArr2 - 1];
 
-	/*sTemp1.erase(replace_if(sTemp1.begin(), sTemp1.end(), isspace, ','), sTemp1.end());
-	sTemp2.erase(replace_if(sTemp2.begin(), sTemp2.end(), isspace, ','), sTemp2.end());*/
-
 	replace_if(sTemp1.begin(), sTemp1.end(), isspace, ',');
 	replace_if(sTemp2.begin(), sTemp2.end(), isspace, ',');
 
@@ -115,7 +114,6 @@ string sFoundInRow(vector<string> vNumberContainer1, vector<string> vNumberConta
 		next = sTemp1.find_first_of(sDelimeter, current);
 		sTemp = sTemp1.substr(current, next - current);
 		vNumberContainer1.push_back(sTemp);
-		//cout << "sTemp: " << sTemp << endl;
 
 	} while (next != string::npos);
 	
@@ -130,7 +128,6 @@ string sFoundInRow(vector<string> vNumberContainer1, vector<string> vNumberConta
 		next = sTemp2.find_first_of(sDelimeter, current);
 		sTemp = sTemp2.substr(current, next - current);
 		vNumberContainer2.push_back(sTemp);
-		//cout << "sTemp: " << sTemp << endl;
 
 	} while (next != string::npos);
 
